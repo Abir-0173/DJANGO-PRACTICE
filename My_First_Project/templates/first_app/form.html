@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% comment %} {% load static %} {% endcomment %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First App</title>
+</head>
+<body>
+
+    {% comment %} <h1>Hello this is a created by html</h1> {% endcomment %}
+    {% comment %} <h1>{{ heading_1 }}</h1>
+    <a href="{{% url "first_app:index" %}}">Back</a>
+    <form action="" method="POST">
+        {{ test_form.as_p }}
+        {% csrf_token %} {% endcomment %}
+        {% comment %} <lebel for="submit">Full Name</label></br> {% endcomment %}
+{% comment %} #Name field have a relationship with backend {% endcomment %}
+        {% comment %} <input type="text" name="user_name" value="" required> </br> {% endcomment %}
+
+        {% comment %} <lable for="user_email">User Email</label></br>
+        <input type="email" name="user_email" value="" required> 
+
+        <input type="submit" name="submit" value="submit">
+    </form> {% endcomment %}
+
+
+    <h1>{{ text_1 }}</h1>
+    <form action="" method="POST">
+        {{ test_form }}
+        {% csrf_token %}
+        <input type="submit" name="submit" value="submit">
+    </form>
+
+    
+    {% if form_submited %}
+        <p>Boolean : {{ field }}</p>
+    {% endif %}
+</body>
+</html>

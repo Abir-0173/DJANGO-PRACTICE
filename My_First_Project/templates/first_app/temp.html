@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static "css/mystyle.css" %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First App</title>
+</head>
+<body>
+    <h1>This is a first App</h1>
+    <a href="{% url 'first_app:form' %}">add new</a>
+    <table>
+        <tr>
+            <th>First Name</th>
+            <th>email</th>
+            <th>password</th>
+            <th>delete</th>
+            <th>update</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.password }}</td>
+            <td><a href="{% url "first_app:delete" user.id %}">delete</a></td>
+            <td><a href="{% url "first_app:update" user.id %}">update</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    {{ text1 }}
+</br>
+    <img src="{% static "images/image-1.gif" %}"></br>
+</body>
+</html>

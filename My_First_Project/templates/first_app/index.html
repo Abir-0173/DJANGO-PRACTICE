@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static "css/mystyle.css" %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Musician List</title>
+</head>
+<body>
+    <h1>{{text_1}}</h1>
+    <table border ="1">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Instrument</th>
+        </tr>
+        {% comment %} {% for user in users %}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.password }}</td>
+            <td><a href="{% url "first_app:delete" user.id %}">delete</a></td>
+            <td><a href="{% url "first_app:update" user.id %}">update</a></td>
+        </tr>
+        {% endfor %} {% endcomment %}
+        {% for row in musician %}
+
+        <tr>
+            <td>{{ row.first_name }}</td>
+            <td>{{ row.last_name }}</td>
+            <td>{{ row.instrument }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
