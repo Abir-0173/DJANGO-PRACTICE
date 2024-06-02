@@ -8,7 +8,24 @@
     <title>Musician List</title>
 </head>
 <body>
-    <h1>{{text_1}}</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    {% comment %} ============================================================ {% endcomment %}
+    {% comment %} <h1>{{text_1}}</h1>
+    <a href="/first_app/form/">Add New</a>
     <table border ="1">
         <tr>
             <th>First Name</th>
@@ -25,14 +42,15 @@
             <td><a href="{% url "first_app:update" user.id %}">update</a></td>
         </tr>
         {% endfor %} {% endcomment %}
-        {% for row in musician %}
+        {% comment %} {% for row in musician %}
 
-        <tr>
+        <tr> 
             <td>{{ row.first_name }}</td>
             <td>{{ row.last_name }}</td>
             <td>{{ row.instrument }}</td>
         </tr>
         {% endfor %}
-    </table>
+    </table> {% endcomment %}
+    {% comment %} ================================= {% endcomment %}
 </body>
 </html>

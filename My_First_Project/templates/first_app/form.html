@@ -26,6 +26,7 @@
 
 
     <h1>{{ text_1 }}</h1>
+    <h1>{{ heading_1 }}</h1>
     <form action="" method="POST">
         {{ test_form }}
         {% csrf_token %}
@@ -34,7 +35,7 @@
 
     
     {% if form_submited %}
-        <p>Boolean : {{ field }}</p>
+        <p>email  {{ field }}</p>
     {% endif %}
 </body>
 </html>
