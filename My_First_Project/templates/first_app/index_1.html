@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 {%  extends "first_app/base.html" %}
 
+{% comment %} {% load my_filters %} {% endcomment %}
+
 {% block body_block %}
-<h1>This text is from IndexPage</h1>
+<h1>HOME page</h1>
+{% comment %} <h1>{{ sample_text.release_date}}</h1> {% endcomment %}
+{% comment %} <h1>{{ sample_text | custom_filter:"New Addtions"}}</h1> {% endcomment %}
 
 
 {% endblock %}

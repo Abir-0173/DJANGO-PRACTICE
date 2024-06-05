@@ -4,39 +4,60 @@ from first_app.models import Musician, Album
 from first_app import forms
 
 # Create your views here.
+
 def index_1(request):
-    diction={}
+    diction={'title': 'Home Page',}
     return render(request, 'first_app/index_1.html', context=diction)
 
-def form_1(request):
-    diction={}
-    return render(request, 'first_app/form_1.html', context=diction)
+def album_list(request):
+    diction={'title': 'list of albums',}
+    return render(request, 'first_app/album_list.html', context=diction)
+
+def musician_form(request):
+    diction={'title': 'Add music',}
+    return render(request, 'first_app/musician_form.html', context=diction)
+def album_form(request):
+    diction={'title': 'Add album',}
+    return render(request, 'first_app/album_form.html', context=diction)
 
 
-def index(request):
-    musician_list = Musician.objects.order_by('first_name')
+
+
+# =================================================================
+# def index_1(request):
+#     diction={'sample_text': "hello abir this is",}
+#     # diction={'sample_text': Album.objects.get(),}
+#     return render(request, 'first_app/index_1.html', context=diction)
+
+# def form_1(request):
+#     diction={}
+#     return render(request, 'first_app/form_1.html', context=diction)
+
+
+# def index(request):
+#     musician_list = Musician.objects.order_by('first_name')
     
-    diction = {'text_1': 'I am learning django', 'musician': musician_list}
-    return render(request, 'first_app/index.html', context=diction)
+#     diction = {'text_1': 'I am learning django', 'musician': musician_list}
+#     return render(request, 'first_app/index.html', context=diction)
     # return render(request, 'first_app/index.html', context=diction)
 
 # def index(request):
 #     return HttpResponse("<h1>Hello It's a Home page</h1>")
 # =================================================================
-def form(request):
-    new_form = forms.MusicianForm()
+# def form(request):
+#     new_form = forms.MusicianForm()
 
-    if request.method == 'POST':
-        new_form = forms.MusicianForm(request.POST)
-        if new_form.is_valid():
-            new_form.save(commit=True)
-            return index(request)
-        else:
-            print('Validation Error')
-            print(new_form.errors)
+#     if request.method == 'POST':
+#         new_form = forms.MusicianForm(request.POST)
+#         if new_form.is_valid():
+#             new_form.save(commit=True)
+#             return index(request)
+#         else:
+#             print('Validation Error')
+#             print(new_form.errors)
 
-    diction = {'test_form': new_form, 'heading_1': 'add new Musicician'}
-    return render(request, 'first_app/form.html', context=diction)
+#     diction = {'test_form': new_form, 'heading_1': 'add new Musicician'}
+#     return render(request, 'first_app/form.html', context=diction)
 # =================================================================
 # def form(request):
 #     new_form = forms.user_form()
