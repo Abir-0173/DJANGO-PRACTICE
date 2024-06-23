@@ -1,5 +1,5 @@
 from django import forms
-from django.core import validators
+# from django.core import validators
 # from first_app.models import Album, Musician
 from first_app import models
 # from django.core.validators import validate_email
@@ -11,6 +11,15 @@ class MusicianForm(forms.ModelForm):
         # exclude = ['first_name']
         # fields = ['first_name', 'last_name', ]
 
+
+
+class AlbumForm(forms.ModelForm):
+    release_date = forms.DateField(widget=forms.TextInput(attrs={'type': 'date'}))
+    class Meta():
+        model = models.Album
+        fields = '__all__'
+        
+# =================================================================
 
 # def even_or_not(value):
 #     if value%2 == 1:

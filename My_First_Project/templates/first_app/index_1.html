@@ -4,7 +4,16 @@
 {% comment %} {% load my_filters %} {% endcomment %}
 
 {% block body_block %}
-<h1>HOME page</h1>
+<h1>List of Musician </h1>
+<ul>
+    {% if musician_list %}
+    {% for musician in musician_list %}
+        <li><a href="{% url 'first_app:album_list' artist_id=musician.id %}">{{ musician.first_name }} {{musician.last_name }}</a></li>
+    {% endfor %}
+    {% else %}
+    <h3>No Musician in The List</h3>
+    {% endif %}
+</ul>
 {% comment %} <h1>{{ sample_text.release_date}}</h1> {% endcomment %}
 {% comment %} <h1>{{ sample_text | custom_filter:"New Addtions"}}</h1> {% endcomment %}
 

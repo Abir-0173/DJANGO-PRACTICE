@@ -1,26 +1,64 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404 
 from django.http import HttpResponse
 from first_app.models import Musician, Album
 from first_app import forms
+from django.db.models import Avg
 
 # Create your views here.
 
 def index_1(request):
-    diction={'title': 'Home Page',}
+    musician_list = Musician.objects.order_by('first_name')
+    diction={'title': 'Home Page', 'musician_list':musician_list}
     return render(request, 'first_app/index_1.html', context=diction)
 
-def album_list(request):
-    diction={'title': 'list of albums',}
+def album_list(request, artist_id):
+    artist_info = Musician.objects.get(pk=artist_id)
+    album_list = Album.objects.filter(artist=artist_id).order_by('name', 'release_date')
+    artist_rating = Album.objects.filter(artist=artist_id).aggregate(Avg('num_stars'))
+
+    diction={'title': 'List of albums', 'artist_info': artist_info,'album_list':album_list,'artist_rating':artist_rating}
     return render(request, 'first_app/album_list.html', context=diction)
 
 def musician_form(request):
-    diction={'title': 'Add music',}
+    form = forms.MusicianForm()
+
+    if request.method == 'POST':
+        form = forms.MusicianForm(request.POST)
+        if form.is_valid():
+            form.save(commit=True)
+            return index_1(request)
+        else:
+            print(form.errors)
+
+    diction={'title': 'Add music','musician_form': form}
     return render(request, 'first_app/musician_form.html', context=diction)
+
 def album_form(request):
-    diction={'title': 'Add album',}
+    form = forms.AlbumForm()
+
+    if request.method == 'POST':
+        form = forms.AlbumForm(request.POST)
+        if form.is_valid():
+            form.save(commit=True)
+            return album_list(request)
+        else:
+            print(form.errors)
+
+    diction={'title': 'Add album', 'album_form': form,}
     return render(request, 'first_app/album_form.html', context=diction)
 
-
+def edit_artist(request, artist_id):
+    artist_info = Musician.objects.get(pk=artist_id)
+    form = forms.MusicianForm(instance=artist_info)
+    if request.method == 'POST':
+        form = forms.MusicianForm(request.POST, instance=artist_info)
+        if form.is_valid():
+            form.save(commit=True)
+            return album_list(request, artist_id)
+        else:
+            print(form.errors)
+    diction={'edit_form': form,}
+    return render(request, 'first_app/edit_artist.html', context=diction)
 
 
 # =================================================================
