@@ -1,0 +1,12 @@
+{% extends 'Login_app/base.html'%}
+{% comment %} {% load staticfiles %} {% endcomment %}
+{% block bodyblock%}
+
+<form enctype="multipart/form-data" method="POST">
+    {{ user_from.as_p}}
+    {{ user_info_from.as_p}}
+    {% csrf_token %}
+    <input type="submit" name="submit" value="Register">
+</form>
+
+{% endblock %}
