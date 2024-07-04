@@ -1,4 +1,12 @@
 {% extends "Login_app/base.html" %}
 {% block bodyblock%}
-<h2>This is index page</h2>
+{% csrf_token %}
+{%if user.is_authenticated %}
+<p>Hello ! {{ user_basic_info.username }}</p>
+<p>Your Email: {{ user_basic_info.email }}</p>
+<p><a href="{{ user_more_info.facebook_id }}">Facebook Profile</p>
+<img src="/media/{{ user_more_info.profile_pics }}" width="250px">
+{% else %}
+<div class="alert alert-primary">You are not Logged In..!</div>
+{% endif %}
 {%endblock%}
