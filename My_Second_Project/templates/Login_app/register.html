@@ -2,7 +2,11 @@
 {% load static %}
 {% block bodyblock %}
 
-<h1>Register</h1>
+
+{% if registerd %}
+<div class="alert alert-success ">Congratulations ! Registration successfull.<div>
+{% comment %} <h1>Register</h1> {% endcomment %}
+{% else %}
 <form enctype="multipart/form-data" method="POST">
     {% csrf_token %}
     {{ user_form.as_p }}
@@ -10,4 +14,5 @@
     <input type="submit" name="submit" value="Register">
 </form>
 
+{% endif %}
 {% endblock %}
