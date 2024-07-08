@@ -2,7 +2,7 @@ from typing import Any
 from django.shortcuts import render
 from django.http import HttpResponse
 # for class defin 
-from django.views.generic import View, TemplateView, ListView
+from django.views.generic import View, TemplateView, ListView, DetailView
 from first_app import models
 
 
@@ -12,6 +12,12 @@ class IndexView(ListView):
     context_object_name ='musicians_list'  # it will be the name of the list in the template
     model = models.Musician
     template_name = 'first_app/index.html'
+
+
+class MusicianDetails(DetailView):
+    context_object_name ='musician'  # it will be the name of the object in the template
+    model = models.Musician
+    template_name = 'first_app/musician_details.html'
 
 
 

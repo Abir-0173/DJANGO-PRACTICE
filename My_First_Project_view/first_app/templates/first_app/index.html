@@ -1,9 +1,10 @@
 {% extends "first_app/base.html" %}
 {% block body_block%}
-
+<ul>
 {% for Musician in musicians_list %}
-    <li> {{Musician.first_name}} {{Musician.last_name}} </li>
+    <li><a href="{% url 'first_app:musician_details' pk=Musician.pk %}">{{Musician.first_name}} {{Musician.last_name}}</a></li>
 {% endfor %}
+</ul>
         {% comment %} <h1>Welcome to My  Django Project</h1>
         <h3> {{ sample_text_1}} </h3>
         <h3> {{ sample_text_2}} </h3> {% endcomment %}
