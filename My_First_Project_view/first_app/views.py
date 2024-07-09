@@ -2,8 +2,9 @@ from typing import Any
 from django.shortcuts import render
 from django.http import HttpResponse
 # for class defin 
-from django.views.generic import View, TemplateView, ListView, DetailView, CreateView, UpdateView
+from django.views.generic import View, TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from first_app import models
+from django.urls import reverse_lazy
 
 
 # Create your views here.
@@ -31,7 +32,10 @@ class UpdateMusician(UpdateView):
     model = models.Musician
     template_name = 'first_app/musician_form.html'
 
-
+class DeleteMusician(DeleteView):
+    model = models.Musician
+    success_url = reverse_lazy('first_app:index')  # redirect to index page after delete.html page load.
+    template_name = 'first_app/delete_musician.html'
 
 
 
