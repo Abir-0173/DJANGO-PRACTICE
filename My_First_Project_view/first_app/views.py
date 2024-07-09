@@ -2,7 +2,7 @@ from typing import Any
 from django.shortcuts import render
 from django.http import HttpResponse
 # for class defin 
-from django.views.generic import View, TemplateView, ListView, DetailView, CreateView
+from django.views.generic import View, TemplateView, ListView, DetailView, CreateView, UpdateView
 from first_app import models
 
 
@@ -22,6 +22,12 @@ class MusicianDetails(DetailView):
 
 class AddMusician(CreateView):
     fields = ('first_name', 'last_name','instrument') 
+    model = models.Musician
+    template_name = 'first_app/musician_form.html'
+
+
+class UpdateMusician(UpdateView):
+    fields = ('first_name', 'instrument')
     model = models.Musician
     template_name = 'first_app/musician_form.html'
 
